@@ -1,0 +1,853 @@
+/*Easysave custom css*/
+/*Overwrite Uikit css*/
+/*Author: Noma Dev*/
+
+/*
+----------------------------
+Font Families
+----------------------------
+*/
+@font-face{
+ font-family:encode;
+ src: url(../fonts/encode.ttf);
+}
+
+
+
+
+/*
+----------------------------
+Animation
+----------------------------
+
+
+
+/*
+----------------------------
+Body
+----------------------------
+*/
+
+html{
+ font-family: encode!important;
+}
+.main
+{
+ background: url(../images/01.png) no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ font-family: encode!important;
+ height: 100vh;
+}
+
+
+/*
+----------------------------
+Buttons
+----------------------------
+*/
+.login-pop{
+ display: table-cell;
+ vertical-align: middle;
+ background-color:  #ff9933;
+ font-size:4vw;
+ font-weight: 500;
+ color:white;
+ text-transform: uppercase;
+ text-align: center;
+ box-shadow: 0 -0.3px 4px rgba(0, 0, 0, .4);
+}
+
+
+.login-btn, .signup-btn, .number-btn,.cashout-btn,.qr-btn,.addbankaccount-btn{
+ vertical-align: middle;
+ font-size:3.5vw;
+ display:inline-block;
+ line-height: normal;
+ font-weight: 500;
+ color:white!important;
+ text-transform: uppercase;
+ text-align: center;
+ padding: 3vw;
+ margin-top:1vw;
+ border: 1px solid;
+ border-width: 0;
+ outline: none;
+ border-color: white;
+ border-radius: 2vw;
+ text-align:center;
+ width: 20vw;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+}
+.cuslogin, .merlogin{
+   width: 35%;
+   border-radius: 30px;
+
+   vertical-align: middle;
+   font-size:3.5vw;
+   display:inline-block;
+   line-height: normal;
+   font-weight: 500;
+
+
+   text-transform: uppercase;
+   text-align: center;
+   padding: 3vw;
+   margin-top:1vw;
+   border: 1px solid;
+   border-width: 1;
+   outline: none;
+   border-color: white;
+
+   text-align:center;
+
+   box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+
+
+}
+.cuslogin{
+  background-color:white;
+
+  color:#ffbf80;
+}
+.signpanel-btn{
+  vertical-align: middle;
+
+  display:inline-block;
+  line-height: normal;
+  font-weight: 500;
+  color:white!important;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 3vw;
+  bottom:0;
+  height:100%;
+  border-width: 0;
+  outline: none;
+  border-color: white;
+  text-align:center;
+  width: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+ outline: none;
+}
+.signpanel-btn,.back, .code-back, .account-back {
+ color :#ff9933!important;
+ background-color:white;
+}
+
+.cashout-btn,.qr-btn{
+ margin-top: 6vw;
+ margin-bottom: 6vw;
+ background-color: #ff9933!important;
+ color:white;
+}
+
+.qr-btn{
+  width: 30vw;
+}
+
+.btn
+{
+ cursor: pointer;
+ transition: background-color .3s;
+}
+
+
+.btn:focus {
+ opacity: 0.85;
+}
+/*
+----------------------------
+Divs/ Panels
+----------------------------
+*/
+.account,.settings-block{
+ padding: 2vw;
+ background-color: white;
+ margin-bottom: 2vw;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+}
+
+.settings-block{
+ padding: 1.5vw;
+ none;
+}
+.bar
+{
+ background-color:  #ff9933;
+ display: block;
+ height: 8.5vh;
+ text-align: center;
+ color: white;
+}
+
+.header{
+ width: 100%;
+ text-align: center;
+ margin-bottom: 17vw;
+ position: fixed;
+ z-index: 9999;
+ top:0;
+ left:0;
+}
+
+.modal-content{
+ color:dimgrey;
+}
+.cashout-text-div{
+ text-align: center;
+ padding:2.5vw;
+ mrgin:2vw;
+}
+
+.cashout,.settings{
+ top:0;
+ display: none;
+ background-color:ghostwhite;
+ width:100%;
+ font-family: encode!important;
+ height: 100vh;
+}
+
+.space{
+ width: 100%;
+ min-height:3vw;
+ clear:both;
+}
+.header-temp{
+ width: 100%;
+ min-height:63vw;
+ clear:both;
+}
+.transactions{
+
+}
+.header-balance{
+ text-align: center;
+ display: block;
+ font-size: 10vw;
+ color: white;
+}
+
+.cover,.info-cover{
+ display: none;
+ width:100%;
+ background: url(../images/blur.png) no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ -o-background-size: cover;
+ background-size: cover;
+ font-family: encode!important;
+ height: 100vh;
+ z-index: 100000;
+ position: fixed;
+ overflow:hidden;
+ top:0;
+ left:0;
+ text-align: center;
+
+}
+
+.modal-div,.info-modal-div{
+ display: none;
+ width:100%;
+ font-family: encode!important;
+ height: 100vh;
+ z-index: 1000000;
+ position: fixed;
+ top:0;
+ left:0;
+ text-align: center;
+ color:white;
+}
+
+.modal,.info-modal{
+ display: none;
+ min-height: 35vh;
+ margin: 0 auto;
+ border-radius:3vw;
+ width:65%;
+ background-color: white;
+ font-family: encode!important;
+ text-align: center;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+}
+
+.info-modal{
+ color:dimgrey;
+ width:90%;
+ min-height: 45vh;
+ clear: both;
+ margin-top: 15vw;
+}
+
+.info-modal .ti-close{
+ display: inline-block;
+ float: left;
+ padding: 3vw;
+ font-weight: bolder;
+
+}
+
+.info-modal .modal-info, .info-modal-info{
+ margin:0 auto;
+}
+.modal-header{
+ bo
+ border-bottom-color:gainsboro;
+}
+
+.login-panel{
+ background-color:  #ff9933;
+ width:100%;
+ height:67%;
+ display: none;
+ line-height: 55px;
+ font-weight: 500;
+ position: fixed;
+ bottom: 0;
+ color:white;
+ text-transform: uppercase;
+ text-align: center;
+
+}
+
+.verification-form,.code-form, .mmcard, .bank_account{
+ display:none;
+ width: 100%;
+}
+.logo
+{
+ text-align: center;
+}
+
+.info-block{
+ margin-bottom: 4vw;
+}
+.icon-div{
+ text-align: center;
+}
+.container {
+ padding-right: 15px;
+ padding-left: 15px;
+ margin-right: auto;
+ margin-left: auto;
+
+ padding-bottom: 15px;
+
+}
+@media (min-width: 768px) {
+ .container {
+  width: 750px;
+ }
+
+}
+@media (min-width: 992px) {
+ .container {
+  width: 970px;
+ }
+}
+@media (min-width: 1200px) {
+ .container {
+  width: 1170px;
+ }
+}
+.signup-panel{
+ background-color:  #ff9933;
+ width:100%;
+ height:90%;
+ display: none;
+ line-height: 40px;
+ font-weight: 500;
+ position: fixed;
+ bottom: 0;
+ color:white;
+ text-transform: uppercase;
+ text-align: center;
+
+
+
+}
+
+.input-panel{
+ margin-top: 4vw;
+ display: block;
+ font-size: 0;
+ margin-bottom: 4vw;
+
+
+}
+
+.vertical-align-wrapsign{
+  position: absolute;
+  width:100%;
+  position: fixed;
+  bottom: 0;
+  height:8%;
+  width: 100%;
+  display: table;
+}
+.vertical-align-wrap {
+ position: absolute;
+ width:100%;
+ position: fixed;
+ bottom: 8%;
+ height:8%;
+ width: 100%;
+ display: table;
+}
+
+.panel-hide{
+ font-size:4vw;
+ font-weight: 500;
+ padding-top: 1vw;
+ padding-bottom: 2vw;
+}
+
+.btn-panel{
+ margin: 2vw;
+ display: block;
+ text-align: center;
+}
+
+.signup-form
+{
+   display: none;
+   overflow:scroll;
+
+}
+
+#signupcontainer{
+  overflow:scroll;
+
+
+}
+
+
+.type-bank, .type-mobile{
+  width: 30%;
+  height: 20%;
+  padding:10%
+}
+
+.user-type-panel{
+ display: none;
+ min-height:80vw;
+ clear: both;
+ width: 48vh;
+ background-color: white;
+ color: #ff9933;
+ line-height: 20px;
+ border:1px solid;
+ border-width: 0;
+ outline: none;
+ border-color: white;
+ border-radius: 2vw;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+
+.addicon{
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+  opacity: 0.1;
+  position:relative;
+  width: 20%;
+}
+
+.infoforemptylist{
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+
+}
+
+.img-holder{
+
+ display: inline-block;
+ height: 25vw;
+ width: 25vw;
+ margin-top: 2vw;
+ padding: 4vw;
+ opacity: 0.8;
+}
+
+.checkbox-styled {
+  display: block;
+
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+.checkbox-styled input[type="checkbox"] {
+  display: none;
+}
+.checkbox-styled input[type="checkbox"] + span {
+
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  -moz-transition: background 0.1s ease-in;
+  -o-transition: background 0.1s ease-in;
+  -webkit-transition: background 0.1s ease-in;
+  transition: background 0.1s ease-in;
+}
+.checkbox-styled input[type="checkbox"] + span:hover {
+  background: #ffeaa7;
+  color:#707070;
+}
+
+.checkbox-styled input[type="checkbox"]:checked + span {
+  background: #fdcb6e;
+}
+
+/*
+----------------------------
+Image
+----------------------------
+*/
+
+.dash-image{
+ margin: 0 auto;
+ width: 100%;
+ margin: 0 auto;
+ top:0;
+ left:0;
+ height: 59vh!important;
+ z-index: -1;
+ position: absolute;
+
+}
+/*
+----------------------------
+Input
+----------------------------
+*/
+input{
+ margin-top:2vw;
+ width:80%;
+ padding: 3vw;
+ border: 1px solid;
+ border-color:  #ff9933;
+ border-radius: 2vw;
+ font-family:encode;
+ color:#ffbf80;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+}
+
+select{
+ margin-top:2vw;
+ width:87%;
+ font-size: 3.5vw;
+ padding: 3vw;
+ border: 1px solid;
+ border-color:  #ff9933;
+ border-radius: 2vw;
+ font-family:encode;
+ color:#ffbf80;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+}
+
+.verification_number
+{
+ padding: 3vw;
+ width:50%!important;
+ border-radius: 0;
+ border:0.04px solid;
+ border-bottom-right-radius: 2vw;
+ border-top-right-radius: 2vw;
+
+
+}
+#signupgender,#idtype,#signupdob{
+  background-color: white;
+}
+/*
+----------------------------
+P/Text
+----------------------------
+*/
+.account-number{
+ display: block;
+ font-size: 5vw;
+ float: left;
+}
+
+.confirmationbtn{
+  color:white;
+
+}
+
+.cashout-text,.settings-text{
+ display: block;
+ font-size:4.5vw;
+ padding:4vw;
+ width: 50vw;
+ margin: 0 auto;
+}
+
+.settings-text{
+ margin:0;
+}
+
+.cashout-info{
+ display: block;
+ font-size:4.5vw;
+}
+
+.cashout-subinfo{
+ display: block;
+ font-size:3vw;
+}
+.modal-close{
+ margin:0 auto;
+ margin-top:12vw;
+ width:4.5%;
+ padding: 1vw;
+ display: block;
+ font-weight: bolder;
+ border:2px solid;
+ font-size:3vw;
+ border-color:white;
+ border-radius: 50%;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+}
+
+.modal-info,.info-modal-info{
+ margin:0 auto;
+ display: block;
+ font-size:3.4vw;
+ padding: 4vw;
+}
+
+.ti-image{
+ font-size: 3vw!important;
+}
+.info,.amount-balance{
+ /* display: block;*/
+ margin: 0 auto;
+ text-align: center;
+ color: white;
+}
+
+.accountdetails{
+  color:white;
+  font-weight: bolder;
+}
+
+
+.stroke{
+ margin:0 auto;
+ margin-top: 10px;
+ width: 80%;
+ border: 0.09px solid;
+ border-color: gainsboro;
+}
+
+.time{
+ float:right;
+ text-align: right;
+ margin-top: 2vw;
+}
+.deposit-icon,.transfer-icon{
+ text-transform: uppercase;
+ font-size:3vw!important;
+ float: right;
+ border:1px solid;
+ padding: 1vw;
+ line-height: 10px;
+ margin-top: 2vw;
+ color: limegreen;
+ border-color:limegreen;
+ padding-left: 2vw;
+ padding-right: 2vw;
+ border-radius: 5vw;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .007);
+}
+.line{
+ border: 0.2px solid;
+ border-color:gainsboro;
+}
+.transfer-icon{
+ color: darkorange;
+ border-color:darkorange;
+}
+.reference-id{
+ font-size:2.8vw!important;
+}
+.small-text{
+ font-size:3vw!important;
+}
+
+.block{
+ display: block;
+ font-size:6vw!important;
+ margin-top: 7px;
+ margin-bottom: 7px;
+}
+
+
+.info-down,.scan{
+ display: inline-block;
+ margin-top: 3vw;
+ width: 8%;
+ background: black;
+ padding: 2.2vw;
+ border-radius: 50%;
+ color: #ff9933;
+ background: white;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+}
+
+.scan{
+	font-size:5vw;
+	font-weight:bolder;
+}
+p{
+ display: inline-block;
+}
+.text
+{
+ display: block;
+ text-transform: capitalize;
+ font-size:3.5vw;
+ margin-bottom: 0;
+}
+
+.subtext{
+ color: grey;
+ display: inline-block;
+ text-transform: capitalize;
+ padding: 2vw;
+}
+.s-text{
+ margin-top: 4vw;
+}
+
+.module{
+ display: inline;
+ background: #ff9933;
+ color: white;
+ padding: 3vw;
+ font-size: 3.5vw;
+ width:10.5vw;
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .4);
+}
+
+.info
+{
+ display: inline-block;
+ font-size: 4vw;
+}
+.icon{
+ border-bottom-left-radius: 2vw;
+ border-top-left-radius: 2vw;
+ border:0.2px solid;
+ border-color:#ff9933;
+ border-left-color:  #ff9933;
+}
+
+.code{
+ border:0.2px solid;
+ border-color:#ff9933;
+ border-right-color: #ff9933;
+}
+
+.header-icons{
+ position: relative;
+ display: block;
+ height: 10%;
+
+ text-decoration: none;
+ font-size: 6vw;
+}
+.header-icons a{
+ color: white!important;
+ float:left;
+ padding: 3vw;
+ margin-left:2vw;
+}
+
+.alt{
+ float:right!important;
+ margin-right:2vw;
+}
+
+/*
+----------------------------
+Navbar
+----------------------------
+*/
+.icon-bar {
+ position: fixed;
+ bottom:0;
+ text-align: center;
+ width: 100%; /* Full-width */
+ background-color: white; /* Dark-grey background */
+ overflow: auto; /* Overflow due to float */
+ box-shadow: 0 1px 4px rgba(0, 0, 0, .8);
+}
+
+.icon-bar a {
+ text-align: center; /* Center-align text */
+ width: 30%; /* Equal width (5 icons with 20% width each = 100%) */
+ padding: 1vw 0;
+ display: inline-block;
+ transition: all 0.3s ease; /* Add transition for hover effects */
+ color: darkgrey; /* White text color */
+ font-size: 7vw; /* Increased font size */
+ padding-bottom: 1vw;
+}
+
+.icon-bar a:hover {
+ color: #ff9933; /* Add a hover color */
+ text-decoration: none;
+}
+
+.active {
+ color: #ff9933; /* Add an active/current color */
+}
+/*
+----------------------------
+Placeholders
+----------------------------
+*/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+ color:  #ffbf80;
+ font-size:3.5vw;
+ opacity:  0.8;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ font-size:3.5vw;
+ color:   #ffbf80;
+ opacity:  0.8;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ font-size:3.5vw;
+ color:    #ffbf80;
+ opacity:  0.8;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ font-size:3.5vw;
+ color:    #ffbf80;
+ opacity:  0.8;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+ font-size:3.5vw;
+ color:    #ffbf80;
+ opacity:  0.8;
+}

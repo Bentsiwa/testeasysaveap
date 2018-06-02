@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';"> -->
+
+		<title>EasySave</title>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<link rel="stylesheet" href="sites/uikit/css/uikit.min.css" />
+		<link rel="stylesheet" href="sites/css/easysave.css" />
+		<link rel="stylesheet" href="sites/libraries/font_awesome/css/font-awesome.min.css">
+		<link  href="sites/css/themify-icons.css" rel="stylesheet">
+	</head>
+	<body onload="getTransactionsWithoutCache()">
+		<div class="dashboard">
+			<div class= "header">
+				<img class="dash-image" src="sites/images/dash.png" >
+				<div class="header-icons">
+					<a href="#"><i class="ti-settings"></i></a>
+					<a href="#"><i class="ti-share"></i></a>
+					<a id="reloadcustomer" href="#"><i class="ti-reload"></i></a>
+					<a class="alt" href="#"><i class="ti-power-off"></i></a>
+				</div><br><br>
+				<center>
+					<div class="header-balance">
+
+						<span id="accountbalance" class="amount-balance">GHS 0.00</span>
+					</div>
+				</center>
+				<span class="info">Available Balance</span>
+				<div class="icon-div">
+					<span class="scan" id="barcodeScanner" ><i class="ti-camera"></i></span>
+				</div>
+			</div>
+			<div class="header-temp">
+
+			</div>
+
+			<div id='transactions'  class="container transactions">
+
+
+			</div>
+			<div id='transfers' class="container transactions">
+				<div>
+					<!-- <center>
+						<img class="addicon" src="sites/images/add.jpg" >
+						<p id="infoforemptylist" class=" uk-text-muted">No transfer has been made yet.</p>
+						<div class="uk-text-muted">Let's start saving!</div>
+				</center> -->
+			</div>
+			</div>
+			<div class="space">
+
+			</div>
+		</div>
+		<div class="cashout">
+			<div class="header-icons">
+				<div class="bar">
+					<a href="#"><i class="ti-settings"></i></a>
+					<!-- <a class="alt"  href="#"><i class="ti-plus"></i></a> -->
+					<span class="cashout-text"> CASH OUT</span>
+				</div>
+			</div>
+			<div class="cashout-text-div">
+				<span class="cashout-info">Select the account to cash out to</span>
+				<!-- <span class="cashout-subinfo">You can add multiple account from the add button above</span> -->
+			</div>
+			<div id='bankaccounts'>
+
+				<!-- <div  class="account btn">
+					  <i class="ti-image small-text"></i><span class="small-text" >MTN Mobile Money</span>
+						<span class="time small-text">  Abeku Santana</span>
+						<p class="block"> 0244843215 </p>
+
+				</div>
+
+				<div class="account btn">
+					 <i class="ti-image small-text"></i><span class="small-text" >Vodafone Cash</span>
+						<span class="time small-text">  Kwame Danso</span>
+						<p class="block"> 0208495532 </p>
+						<span class="small-text" >Kasoa Brach</span>
+
+				</div> -->
+
+				<!-- <label class="account checkbox-styled btn">
+				  <input type="checkbox" name="selected_account" value="happy" checked />
+				  <span class="container">
+				    <i class="ti-image small-text"></i><span class="small-text" >MTN Mobile Money</span>
+				    <span class="time small-text">  Abeku Santana</span>
+				    <p class="block"> 0244843215 </p>
+				  </span>
+				</label>
+
+
+				<label class="account checkbox-styled">
+				  <input type="checkbox" name="selected_account" value="sad" />
+				  <span class="container sad">
+				    <i class="ti-image small-text"></i><span class="small-text" >Vodafone Cash</span>
+				     <span class="time small-text">  Kwame Danso</span>
+				     <p class="block"> 0208495532 </p>
+				     <span class="small-text" >Kasoa Brach</span>
+				  </span>
+				</label> -->
+		</div>
+		</div>
+		<div class="settings">
+			<div class="header-icons">
+				<div class="bar">
+					<a href="#"><i class="ti-arrow-left"></i></a>
+					<span class="cashout-text"> SETTINGS</span>
+				</div>
+			</div>
+			<div class="settings-block">
+				<p class="ti-share"> Set Automatic Cashout </p><br>
+				<p class="ti-power-off"> Log Out </p>
+				<p class="settings-text"> Contact Us </p>
+			</div>
+		</div>
+		</div>
+
+	<div class="icon-bar">
+		<a href="#"><i class="active ti-home"></i></a>
+		<a href="#"><i class="ti-export"></i></a>
+		<a  href="#"><i class="ti-wallet"></i></a>
+
+	</div>
+	<div class="cover">
+
+	</div>
+	<div class="modal-div">
+		<span class="ti-close modal-close"></span><br>
+		<span class="modal-info">SHOW THIS CODE TO THE AGENT</span>
+		<div class="modal">
+			<div class="modal-content">
+				<span class="modal-info">Enter the amount that the user is saving</span>
+				<input type="number" placeholder="Amount">
+				<div class="qr-btn btn" onClick=generate_qrcode()>Create Code</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="info-cover">
+
+	</div>
+	<div class="info-modal-div">
+		<div class="info-modal">
+			<div class="modal-header">
+				<span class="ti-close"></span>
+				<span class="info-modal-info"></span>
+				<div class="line"></div>
+			</div>
+			<div class="info-modal-content">
+
+			</div>
+		</div>
+	</div>
+
+
+	<!--		scripts-->
+
+	<script type="text/javascript" src="sites/libraries/js-toast-master/toast.js"></script>
+	<script type="text/javascript" src="sites/libraries/jquery.js"></script>
+	<!--		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script> -->
+	<script type="text/javascript" src="css.js"></script>
+	<script type="text/javascript" src="qrcode.js"></script>
+	<script src="sites/uikit/js/uikit.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
+
+	</body>
+</html>

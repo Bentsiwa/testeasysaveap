@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>EasySave</title>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<link rel="stylesheet" href="sites/uikit/css/uikit.min.css" />
+		<link rel="stylesheet" href="sites/css/easysave.css" />
+		<link rel="stylesheet" href="sites/libraries/font_awesome/css/font-awesome.min.css">
+		<link  href="sites/css/themify-icons.css" rel="stylesheet">
+	</head>
+	<body onload="getTransactionsWithoutCache()">
+		<div class="dashboard">
+			<div class= "header">
+				<img class="dash-image"src="sites/images/dash.png" >
+				<div class="header-icons">
+					<a href="#"><i class="ti-settings"></i></a>
+					<a href="#"><i class="ti-plus"></i></a>
+
+					<a href="#"><i class="ti-reload"></i></a>
+					<a class="alt" href="#"><i class="ti-power-off"></i></a>
+				</div><br><br>
+				<div class="header-balance">
+					<span id="accountbalance" class="amount-balance">GHS 0.00</span>
+				</div>
+		
+				<span class="info">Available Balance</span>
+				<div class="icon-div">
+					<span class="info-down"><i class="ti-arrow-down"></i></span>
+				</div>
+			</div>
+			<div class="header-temp">
+
+			</div>
+
+			<div  id='transactions' class="container transactions">
+				<!-- <div class="info-block">
+					<div>
+						<div>
+							<i class="ti-image small-text"></i><span class="small-text" > Abeku Santana</span>
+							<span class="time small-text"> 2 hours ago</span></div>
+						<p class="block">GHS 300.00 <span class="deposit-icon">Deposit</span></p>
+						<span class="reference-id">Reference ID: GH2122939 </span>
+					</div>
+					<div class="stroke"></div>
+				</div> -->
+
+			</div>
+			<div class="space">
+
+			</div>
+		</div>
+		<div class="cashout">
+			<div class="header-icons">
+				<div class="bar">
+					<a href="#"><i class="ti-settings"></i></a>
+					<a class="alt" href="#"><i class="ti-plus"></i></a>
+					<span class="cashout-text"> CASH OUT</span>
+				</div>
+			</div>
+			<div class="cashout-text-div">
+				<span class="cashout-info">Select the account to cash out to</span>
+				<!-- <span class="cashout-subinfo">You can add multiple account from the add button above</span> -->
+			</div>
+			<div id='bankaccounts'>
+
+		</div>
+		<div class="settings">
+			<div class="header-icons">
+				<div class="bar">
+					<a href="#"><i class="ti-arrow-left"></i></a>
+					<span class="cashout-text"> SETTINGS</span>
+				</div>
+			</div>
+			<div class="settings-block">
+				<p class="settings-text"> Set Automatic Cashout </p>
+				<p class="settings-text"> Log Out </p>
+				<p class="settings-text"> Contact Us </p>
+			</div>
+		</div>
+		</div>
+
+	<div class="icon-bar">
+		<a href="#"><i class="active ti-home"></i></a>
+		<a href="#"><i class="ti-wallet"></i></a>
+		<a href="#"><i class="ti-more"></i></a>
+	</div>
+	<div class="cover">
+
+	</div>
+	<div class="modal-div">
+		<span class="ti-close modal-close"></span><br>
+		<span class="modal-info">SHOW THIS CODE TO THE CUSTOMER</span>
+		<div class="modal">
+			<div class="modal-content">
+				<span class="modal-info">Enter the amount that the user is saving</span>
+				<input type="number" id="amount" placeholder="Amount">
+				<div id="result"></div>
+				<div class="qr-btn btn" onClick=generate_qrcode()>Create Code</div>
+
+
+			</div>
+		</div>
+	</div>
+	<div class="info-cover">
+
+	</div>
+	<div class="info-modal-div">
+		<div class="info-modal">
+			<div class="modal-header">
+				<span class="ti-close"></span>
+				<span class="info-modal-info"></span>
+				<div class="line"></div>
+			</div>
+			<div class="info-modal-content">
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--		scripts-->
+
+	<script type="text/javascript" src="sites/libraries/js-toast-master/toast.js"></script>
+	<script type="text/javascript" src="sites/libraries/jquery.js"></script>
+	<!--		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script> -->
+	<script type="text/javascript" src="css.js"></script>
+	<script type="text/javascript" src="qrcode.js"></script>
+	<script src="sites/uikit/js/uikit.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
+
+	</body>
+</html>

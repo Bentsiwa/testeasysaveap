@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';"> -->
+		<title>EasySave</title>
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<link rel="stylesheet" href="sites/uikit/css/uikit.min.css" />
+		<link rel="stylesheet" href="sites/css/easysave.css" />
+		<link rel="stylesheet" href="sites/libraries/font_awesome/css/font-awesome.min.css">
+	</head>
+	<body onload="checkstatus()">
+		<div class="main">
+			<div class="logo">
+				<img src="sites/images/easy.png">
+			</div>
+			<div class="login-panel">
+			<!-- 	<div id="home">
+					<div id="app-status-div">
+						<ul id="app-status-ul">
+							<li>Cordova PushNotification Plugin Demo</li>
+						</ul>
+					</div>
+				</div> -->
+				<div class="container">
+					<div class="panel-hide">
+						<i id="showsignupbtn" class="fa fa-chevron-down" aria-hidden="true"></i>
+					</div>
+					<div class="input-panel">
+						<input type="text" id="homeUsername" placeholder="USERNAME" required>
+						<input type="password" id="homePassword" placeholder="PASSWORD" required>
+					</div>
+					<div class="btn-panel">
+						<!-- <span class="merlogin" onclick="loginMerchant()">Merchant Login</span> -->
+						<span class="merlogin" onclick="loginCustomer()">Login</span>
+
+
+						<!--					<span class="text">Forgot Password?</span>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="signup-panel">
+				<div class="signup-panel-hide">
+					<i class="sign-fa fa fa-chevron-down" aria-hidden="true"></i>
+				</div>
+				<div class="user-type-panel">
+					<div class="container">
+						<p class="s-text">Sign Up</p><br>
+						<span class="subtext"> Click to continue to sign up as a customer.</span>
+						<span class="user-type"> </span>
+						<!-- <div class="img-holder">
+							<img class="type-merchant" src="sites/images/001-help-operator.png">
+							<p class="type-merchant">Merchant</p>
+						</div> -->
+						<div class="img-holder">
+							<img class="type-customer" src="sites/images/002-clerk-with-tie.png">
+							<p class="type-customer">Customer</p>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+
+					<div class="signup-form uk-grid ">
+						<!-- <p class="s-text">Sign Up</p> -->
+						<!-- <h3><span class="subtext"> Sign Up</span></h3> -->
+						<!-- <span class="confirmationbtn uk-text-danger uk-text-capitalize fa fa-exclamation">The specified passwords do not match</span> -->
+						<div class="input-panel">
+							<input class="input uk-width-1-1" id='signupemail' type="email" placeholder="EMAIL" required>
+							<input class=" input  uk-width-1-2 " id='signupfirstname' type="text" placeholder="FIRSTNAME" required>
+							<input  class="input  uk-width-1-2 " id='signuplastname' type="text" placeholder="LASTNAME" >
+							<input class="input uk-width-1-1" id='signupdob' type="date" placeholder="DATE OF BIRTH"  >
+
+							<select id='signupgender' class="input uk-width-1-1" required>
+								<option disabled value="" >GENDER</option>
+								<option value="Male" >MALE</option>
+								<option value="Female" >FEMALE</option>
+							</select>
+							<select id='idtype' class="input uk-width-1-1" placeholder="ID TYPE" required>
+								<option disabled value="" >ID TYPE</option>
+								<option value="Passport" >PASSPORT</option>
+								<option value="VoterID" >VOTER'S ID</option>
+								<option value="NHIS" >NHIS</option>
+								<option value="DriverLicense" >DRIVER'S LICENSE</option>
+							</select>
+
+
+							<input class="input uk-width-1-1" id='idnumber' type="text" placeholder="ID NUMBER" required>
+							<input class="input uk-width-1-1" id='signuppassword' type="password" placeholder="PASSWORD" required>
+							<input class="input uk-width-1-1" id='signupconfpassword' type="password" placeholder="CONFIRM PASSWORD" required>
+
+						</div>
+						<div class="btn-panel">
+							<span class="signup-btn btn">Sign Up</span>
+						</div>
+
+
+				</div>
+				</div>
+				<div class="container">
+					<div class="verification-form">
+						<p class="text">Please Enter Your Phone Number To Verify Your Account</p>
+						<div class="input-panel">
+							<span class="module icon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+							<span class="module code">+233</span>
+							<input class="verification_number" id='phonenumber'  required maxlength="9" type="phone" placeholder="">
+						</div>
+						<div class="btn-panel">
+							<span class="number-btn confirm btn">Confirm</span>
+							<span class="number-btn back btn">Back</span>
+						</div>
+					</div>
+					<div class="code-form">
+						<p class="text">We've sent you a code, please enter it</p>
+						<div class="input-panel">
+							<input class="input code" id='smscode' type="text" placeholder="">
+						</div>
+						<div class="btn-panel">
+							<span  class="number-btn addaccount-form btn">Confirm</span>
+							<span class="number-btn code-back btn">Back</span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="vertical-align-wrapsign">
+				<span class="signpanel-btn btn">Sign Up</span>
+
+			</div>
+			<div class="vertical-align-wrap">
+
+				<div class="login-pop btn" >Login</div>
+			</div>
+		</div>
+		<div class="info-modal-div">
+			<div class="info-modal">
+				<div class="modal-header">
+					<span  class="ti-close"></span>
+					<span class="info-modal-info"></span>
+					<div class="line"></div>
+				</div>
+				<div class="info-modal-content">
+
+				</div>
+			</div>
+		</div>
+
+		<!--		scripts-->
+		<script type="text/javascript" src="sites/libraries/js-toast-master/toast.js"></script>
+		<script type="text/javascript" src="sites/libraries/jquery.js"></script>
+		<script type="text/javascript" src="css.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script src="sites/uikit/js/uikit.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
+
+	</body>
+	</html>
