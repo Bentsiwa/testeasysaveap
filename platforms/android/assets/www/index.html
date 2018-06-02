@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="sites/css/easysave.css" />
 		<link rel="stylesheet" href="sites/libraries/font_awesome/css/font-awesome.min.css">
 	</head>
-	<body>
+	<body onload="checkstatus()">
 		<div class="main">
 			<div class="logo">
 				<img src="sites/images/easy.png">
@@ -57,23 +57,24 @@
 						</div>
 					</div>
 				</div>
-				<div id="signupcontainer" class="container">
-					<div id="signupcontainer">
-					<div class="signup-form">
+				<div class="container">
+
+					<div class="signup-form uk-grid ">
 
 						<!-- <span class="confirmationbtn uk-text-danger uk-text-capitalize fa fa-exclamation">The specified passwords do not match</span> -->
 						<div class="input-panel">
-							<input class="input" id='signupemail' type="email" placeholder="EMAIL" required>
-							<input class="input" id='signupfirstname' type="text" placeholder="FIRSTNAME" required>
-							<input  class="input" id='signuplastname' type="text" placeholder="LASTNAME" >
-							<input class="input" id='signupdob' type="date" placeholder="DATE OF BIRTH"  >
+							<input class="input uk-width-1-1" id='signupemail' type="email" placeholder="EMAIL" required>
 
-							<select id='signupgender' class="input" required>
+							<input class=" input  uk-width-1-2 " id='signupfirstname' type="text" placeholder="FIRSTNAME" required>
+							<input  class="input  uk-width-1-2 " id='signuplastname' type="text" placeholder="LASTNAME" >
+							<input class="input uk-width-1-1" id='signupdob' type="date" placeholder="DATE OF BIRTH"  >
+
+							<select id='signupgender' class="input uk-width-1-1" required>
 								<option disabled value="" >GENDER</option>
 								<option value="Male" >MALE</option>
 								<option value="Female" >FEMALE</option>
 							</select>
-							<select id='idtype' class="input" placeholder="ID TYPE" required>
+							<select id='idtype' class="input uk-width-1-1" placeholder="ID TYPE" required>
 								<option disabled value="" >ID TYPE</option>
 								<option value="Passport" >PASSPORT</option>
 								<option value="VoterID" >VOTER'S ID</option>
@@ -82,16 +83,16 @@
 							</select>
 
 
-							<input class="input" id='idnumber' type="text" placeholder="ID NUMBER" required>
-							<input class="input" id='signuppassword' type="password" placeholder="PASSWORD" required>
-							<input class="input" id='signupconfpassword' type="password" placeholder="CONFIRM PASSWORD" required>
+							<input class="input uk-width-1-1" id='idnumber' type="text" placeholder="ID NUMBER" required>
+							<input class="input uk-width-1-1" id='signuppassword' type="password" placeholder="PASSWORD" required>
+							<input class="input uk-width-1-1" id='signupconfpassword' type="password" placeholder="CONFIRM PASSWORD" required>
 
 						</div>
 						<div class="btn-panel">
 							<span class="signup-btn btn">Sign Up</span>
 						</div>
 
-					</div>
+
 				</div>
 				</div>
 				<div class="container">

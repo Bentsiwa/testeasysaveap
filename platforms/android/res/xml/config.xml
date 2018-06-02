@@ -35,14 +35,17 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
-    <splash density="land-hdpi" src="res/screen/android/easy.png" />
-    <splash density="land-ldpi" src="res/screen/android/easy.png" />
-    <splash density="land-mdpi" src="res/screen/android/easy.png" />
+    <splash density="land-hdpi" src="res/screen/android/icon.png" />
+    <splash density="land-ldpi" src="res/screen/android/icon.png" />
+    <splash density="land-mdpi" src="res/screen/android/icon.png" />
     <splash density="land-xhdpi" src="res/screen/android/easy.png" />
-    <splash density="port-hdpi" src="res/screen/android/easy.png" />
-    <splash density="port-ldpi" src="res/screen/android/easy.png" />
-    <splash density="port-mdpi" src="res/screen/android/easy.png" />
-    <splash density="port-xhdpi" src="res/screen/android/easy.png" />
+    <splash density="port-hdpi" src="res/screen/android/icon.png" />
+    <splash density="port-ldpi" src="res/screen/android/icon.png" />
+    <splash density="port-mdpi" src="res/screen/android/icon.png" />
+    <splash density="port-xhdpi" src="res/screen/android/icon.png" />
+    <icon density="mdpi" src="res/icon/android/icon.png" />
+    <icon density="hdpi" src="res/icon/android/icon.png" />
+    <icon density="xhdpi" src="res/icon/android/icon.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="SplashScreenDelay" value="3000" />
 </widget>

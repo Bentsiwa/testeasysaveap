@@ -28,7 +28,6 @@ $(".ti-power-off").click(function(){
     }, 10000);
 });
 
-
 $(".login-pop").click(function(){
 
     $(".login-panel").slideToggle();
@@ -179,7 +178,7 @@ $(".addaccount-form").click(function(){
                     							+'<option value="MTN" >MTN</option>'
                     							+'<option value="Vodafone" >Vodafone</option>'
                     							+'<option value="Airtel_Tigo" >Airtel Tigo</option>'
-                    							//+'<option value="Glo" >Glo</option>'
+                    							+'<option value="Glo" >Glo</option>'
                     							+'</select><input type="text" id="mmname" placeholder="Account Name"></span>'
                                   +'<br><div class="btn-panel"><span class="cashout-btn btn" onclick="signUp()">Add</span><span onclick="account_back()" class="number-btn  account-back btn">Back</span></div></div>');
     $(".info-cover").fadeIn();
@@ -232,11 +231,9 @@ $(".ti-share").click(function(){
 });
 
 $(".modal-close").click(function(){
-
     $(".modal").fadeOut();
     $(".cover").fadeOut();
     $(".modal-div").fadeOut();
-
 });
 
 $(".ti-home").click(function(){
@@ -259,25 +256,6 @@ $(".ti-settings").click(function(){
         $(localStorage.currentPage).hide();
         $( ".settings" ).fadeIn(600);
     }
-});
-
-$("#reloadcustomer").click(function(){
-  getTransactions();
-});
-
-$("#reloadmerchant").click(function(){
-  getSentTransactions();
-});
-
-$(".ti-plus").click(function(){
-  $(".info-modal-info").html("REQUEST MONEY");
-  $(".info-modal-content").html('<span class="modal-info">Money will be transfered from your <br>mobile money account.'
-                                +' You will receive a prompt to approve the request.<br><br><b>Close the popup to see your updated balance.</b></span>'
-                                +'<input type="number" id="requestmoney" placeholder="GHS 0.00">'
-                                +'<div onClick="sendMoneyRequest()" class="cashout-btn btn" >Send Request</div>');
-  $(".info-cover").fadeIn();
-  $(".info-modal-div").fadeIn();
-  $(".info-modal").fadeIn(600);
 });
 
 $(".ti-wallet").click(function(){
@@ -305,13 +283,9 @@ $(".ti-export").click(function(){
 });
 
 $(".ti-close").click(function(){
-
-    getBalance();
-
     $(".info-cover").fadeOut();
     $(".info-modal-div").fadeOut();
     $(".info-modal").fadeOut();
-
 
 });
 
@@ -396,24 +370,21 @@ function selected_account(checkedbox){
 	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	function onDeviceReady() {
 
+
 		document.getElementById("barcodeScanner").onclick = function(){
-      alert("barcode");
 
 
-		cordova.plugins.barcodeScanner.scan(
+			cordova.plugins.barcodeScanner.scan(
 		 function (result) {
-       alert("barcode");
-
 
        //split items separated by : once the QR code is caught.
        var fundsFrom = result.text.split(":");
 
-       alert("barcode");
 
 
        //The php script here adds the transaction to records and executes a function explode which does the deductions to the easysave_accounts
        var theUrl="http://easysavegh.com/databasecommand.php?cmd=4&merchantid="+fundsFrom[0]+"&merchantname="+fundsFrom[1]+"&merchantamount="+fundsFrom[2]+"&userid="+localStorage.loggedID+"&username="+localStorage.loggedName;
-       prompt('url',theUrl);
+
        $.ajax(theUrl,
              {
                async:true,
@@ -421,18 +392,16 @@ function selected_account(checkedbox){
                complete:barcodeComplete
              });
 
-
-             alert('We got a barcode\n' +
-   							 'Result: ' + result.text + '\n' +
-   							 'Format: ' + result.format + '\n' +
-   							 'Cancelled: ' + result.cancelled);
-              transferToAccount();
+             //
+             // alert('We got a barcode\n' +
+   						// 	 'Result: ' + result.text + '\n' +
+   						// 	 'Format: ' + result.format + '\n' +
+   						// 	 'Cancelled: ' + result.cancelled);
               getTransactions();
-
 
 		 },
 		 function (error) {
-				  alert("Scanning failed: " + error);
+				  alert('Scanning failed.');
 		 },
 		 {
 				 "preferFrontCamera" : true, // iOS and Android
@@ -448,81 +417,7 @@ function selected_account(checkedbox){
 	}
 	} ;
 
-} )();
-
-  function tokenHandler (result) {
-      $("#app-status-ul").append('<li>token: '+ result +'</li>');
-      // Your iOS push server needs to know the token before it can push to this device
-      // here is where you might want to send it the token for later use.
-  }
-
-  function successHandler (result) {
-      $("#app-status-ul").append('<li>success:'+ result +'</li>');
-  }
-
-  function errorHandler (error) {
-      $("#app-status-ul").append('<li>error:'+ error +'</li>');
-}
-
-
-// Android and Amazon Fire OS
-function onNotification(e) {
-  $("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-
-  switch( e.event )
-  {
-  case 'registered':
-    if ( e.regid.length > 0 )
-    {
-      $("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
-      // Your GCM push server needs to know the regID before it can push to this device
-      // here is where you might want to send it the regID for later use.
-      console.log("regID = " + e.regid);
-    }
-  break;
-
-  case 'message':
-    // if this flag is set, this notification happened while we were in the foreground.
-    // you might want to play a sound to get the user's attention, throw up a dialog, etc.
-    if ( e.foreground )
-    {
-      $("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
-      // on Android soundname is outside the payload.
-      // On Amazon FireOS all custom attributes are contained within payload
-      var soundfile = e.soundname || e.payload.sound;
-      // if the notification contains a soundname, play it.
-      var my_media = new Media("/android_asset/www/"+ soundfile);
-      my_media.play();
-    }
-    else
-    {  // otherwise we were launched because the user touched a notification in the notification tray.
-      if ( e.coldstart )
-      {
-        $("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-      }
-      else
-      {
-        $("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-      }
-    }
-
-     $("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-           //Only works for GCM
-     $("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-     //Only works on Amazon Fire OS
-     $status.append('<li>MESSAGE -> TIME: ' + e.payload.timeStamp + '</li>');
-  break;
-
-  case 'error':
-    $("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
-  break;
-
-  default:
-    $("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
-  break;
-  }
-}
+	})();
 
 function account_back(){
 
@@ -637,10 +532,9 @@ function loginMerchantComplete(xhr, status){
 
       localStorage.loggedID = obj.user_id;
       localStorage.loggedName = obj.firstname+" "+obj.lastname;
-
         localStorage.type="merchant";
-       console.log(localStorage.loggedID);
-      // localStorage.loggedAccountType = "bank";
+      console.log(localStorage.loggedID);
+      localStorage.loggedAccountType = "bank";
       window.location="dashboard.html";
 
     }
@@ -744,8 +638,8 @@ function loginCustomerComplete(xhr, status){
       localStorage.cashoutamt=obj.cashout_amount;
       localStorage.type="customer";
 
-      //
-      // localStorage.loggedAccountType = "bank";
+
+      localStorage.loggedAccountType = "bank";
       console.log(localStorage.loggedID);
       window.location="client-dashboard.html";
 
@@ -916,140 +810,6 @@ function signUpComplete(xhr, status){
   }
 }
 
-function getTransactionsWithoutCache(){
-
-    $("#transfers").hide();
-    var id=localStorage.loggedID;
-
-    var theUrl="http://easysavegh.com/databasecommand.php?cmd=6&id="+id;
-
-    $.ajax(theUrl,
-          {
-            async:true,
-            complete:getTransactionsWithoutCacheComplete
-    });
-
-}
-
-function getTransactionsWithoutCacheComplete(xhr,status){
-  if(status!="success"){
-      alert('<p class="uk-modal-body">Error while fetching transactions.</p>');
-      return;
-  }else{
-    var obj=JSON.parse(xhr.responseText);
-
-    if(obj.result==0){
-      //  UIkit.modal.alert('<p class="uk-modal-body">'+obj.message+'</p>');
-      transactions.innerHTML='<div><center><img class="addicon" src="sites/images/add.jpg" ><p id="infoforemptylist" class=" uk-text-muted uk-text-large">Save money!</p><div class="uk-text-muted">We are glad you joined us! <br>Let&apos;s start by saving.</div></center></div>';
-
-    }
-    else{
-               var currenttime =  new Date();
-               //var dt=timeStamp.toUTCString();
-
-               var result="";
-              var length=obj.transactions.length;
-
-              if(length<=0){
-                transactions.innerHTML='<div><center><img class="addicon" src="sites/images/add.jpg" ><p id="infoforemptylist" class=" uk-text-muted uk-text-large">Save money!</p><div class="uk-text-muted">We are glad you joined us! <br>Let&apos;s start by saving.</div></center></div>';
-
-
-              }else{
-
-
-                while(length>0){
-
-                    var transaction_date=obj.transactions[length-1].transaction_date;
-
-                    // Split timestamp into [ Y, M, D, h, m, s ]
-                    var splitTime = transaction_date.split(/[- :]/);
-
-                    // Apply each element to the Date function
-                    var transactiondateSplit = new Date(Date.UTC(splitTime[0], splitTime[1]-1, splitTime[2], splitTime[3], splitTime[4], splitTime[5]));
-
-
-                    var timeDifference=currenttime.getTime()-transactiondateSplit.getTime();
-
-
-                    var realtime=timeDifference/1000;
-                    if(realtime==1){
-                      difference=Math.round(realtime)+" second ";
-                    }
-                    else if(realtime<61){
-                      difference=Math.round(realtime)+" seconds ";
-
-                    }
-                    else{
-                      var difference;
-                      realtime=timeDifference/60000;
-                      if(Math.round(realtime)==1){
-                        difference=Math.round(realtime)+" minute ";
-                      }
-                      else if(realtime<61){
-                        difference=Math.round(realtime)+" minutes ";
-                      }else{
-                        realtime=timeDifference/3600000;
-                        if(Math.round(realtime)==1){
-                          difference=Math.round(realtime)+" hour ";
-                        }
-                        else if(realtime<25){
-                          difference=Math.round(realtime)+" hours ";
-
-                        }else{
-                          realtime=timeDifference/86400000;
-                          if(Math.round(realtime)==1){
-                            difference=Math.round(realtime)+" day ";
-                          }
-                          else if(realtime<29){
-                            difference=Math.round(realtime)+" days ";
-                          }
-                          else{
-                            realtime=timeDifference/604800000;
-                            if(Math.round(realtime)==1){
-                              difference=Math.round(realtime)+" week ";
-                            }
-                            else if(realtime<53){
-                              difference=Math.round(realtime)+" weeks ";
-                            }
-                            else{
-                              realtime=timeDifference/2628000000;
-                              if(Math.round(realtime)==1){
-                                difference=Math.round(realtime)+" month ";
-                              }
-                              else if(realtime<13){
-                                difference=Math.round(realtime)+" months ";
-                              }else{
-                                realtime=timeDifference/31540000000;
-                                if(Math.round(realtime)==1){
-                                  difference=Math.round(realtime)+" year ";
-                                }
-                                else{
-                                  difference=Math.round(realtime)+" years ";
-                                }
-
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-
-                    var status="Status: "+obj.transactions[length-1].status;
-                    result+="<div class='info-block'><div><div><i class='ti-user small-text'></i><span class='small-text' >"+obj.transactions[length-1].firstname+" "+obj.transactions[length-1].lastname+"</span><span class='time small-text'> "+ difference +"ago</span></div><p class='block'>"+obj.transactions[length-1].amount_sent+"<span class='deposit-icon'>Deposit</span></p><span class='reference-id'>"+status+"</span></div><div class='stroke'></div></div>";
-
-                    length-=1;
-               }
-
-               transactions.innerHTML=result;
-             }
-        }
-  }
-  getBalance();
-  getAccount();
-  getTransfers();
-
-}
-
 function getTransactions(){
 
     $("#transfers").hide();
@@ -1168,10 +928,9 @@ function getTransactionsComplete(xhr,status){
                         }
                       }
                     }
-                    var status="Status: "+obj.transactions[length-1].status;
 
 
-                    result+="<div class='info-block'><div><div><i class='ti-user small-text'></i><span class='small-text' >"+obj.transactions[length-1].firstname+" "+obj.transactions[length-1].lastname+"</span><span class='time small-text'> "+ difference +"ago</span></div><p class='block'>"+obj.transactions[length-1].amount_sent+"<span class='deposit-icon'>Deposit</span></p><span class='reference-id'>"+ status+" </span></div><div class='stroke'></div></div>";
+                    result+="<div class='info-block'><div><div><i class='ti-user small-text'></i><span class='small-text' >"+obj.transactions[length-1].firstname+" "+obj.transactions[length-1].lastname+"</span><span class='time small-text'> "+ difference +"ago</span></div><p class='block'>"+obj.transactions[length-1].amount_sent+"<span class='deposit-icon'>Deposit</span></p><span class='reference-id'>Reference ID: GH2122939 </span></div><div class='stroke'></div></div>";
 
                     length-=1;
                }
@@ -1181,159 +940,7 @@ function getTransactionsComplete(xhr,status){
         }
   }
   getBalance();
-  getAccount();
   getTransfers();
-
-}
-
-function getSentTransactionsWithoutCache(){
-
-    $("#transfers").hide();
-    var id=localStorage.loggedID;
-
-    var theUrl="http://easysavegh.com/databasecommand.php?cmd=16&id="+id;
-
-    $.ajax(theUrl,
-          {
-            async:true,
-            complete:getSentTransactionsComplete
-    });
-
-}
-
-function getSentTransactions(){
-
-    $("#transfers").hide();
-    var id=localStorage.loggedID;
-
-    var theUrl="http://easysavegh.com/databasecommand.php?cmd=16&id="+id;
-
-    $.ajax(theUrl,
-          {
-            async:true,
-            cache:false,
-            complete:getSentTransactionsComplete
-    });
-
-}
-
-function getSentTransactionsComplete(xhr,status){
-  if(status!="success"){
-      alert('<p class="uk-modal-body">Error while fetching transactions.</p>');
-      return;
-  }else{
-    var obj=JSON.parse(xhr.responseText);
-
-    if(obj.result==0){
-      //  UIkit.modal.alert('<p class="uk-modal-body">'+obj.message+'</p>');
-      transactions.innerHTML='<div><center><img class="addicon" src="sites/images/add.jpg" ><p id="infoforemptylist" class=" uk-text-muted uk-text-large">Save money!</p><div class="uk-text-muted">We are glad you joined us! <br>Let&apos;s start by saving.</div></center></div>';
-
-    }
-    else{
-               var currenttime =  new Date();
-               //var dt=timeStamp.toUTCString();
-
-               var result="";
-              var length=obj.transactions.length;
-
-              if(length<=0){
-                transactions.innerHTML='<div><center><img class="addicon" src="sites/images/add.jpg" ><p id="infoforemptylist" class=" uk-text-muted uk-text-large">Save money!</p><div class="uk-text-muted">We are glad you joined us! <br>Let&apos;s start by saving.</div></center></div>';
-
-
-              }else{
-
-
-                while(length>0){
-
-                    var transaction_date=obj.transactions[length-1].transaction_date;
-
-                    // Split timestamp into [ Y, M, D, h, m, s ]
-                    var splitTime = transaction_date.split(/[- :]/);
-
-                    // Apply each element to the Date function
-                    var transactiondateSplit = new Date(Date.UTC(splitTime[0], splitTime[1]-1, splitTime[2], splitTime[3], splitTime[4], splitTime[5]));
-
-
-                    var timeDifference=currenttime.getTime()-transactiondateSplit.getTime();
-
-
-                    var realtime=timeDifference/1000;
-                    if(realtime==1){
-                      difference=Math.round(realtime)+" second ";
-                    }
-                    else if(realtime<61){
-                      difference=Math.round(realtime)+" seconds ";
-
-                    }
-                    else{
-                      var difference;
-                      realtime=timeDifference/60000;
-                      if(Math.round(realtime)==1){
-                        difference=Math.round(realtime)+" minute ";
-                      }
-                      else if(realtime<61){
-                        difference=Math.round(realtime)+" minutes ";
-                      }else{
-                        realtime=timeDifference/3600000;
-                        if(Math.round(realtime)==1){
-                          difference=Math.round(realtime)+" hour ";
-                        }
-                        else if(realtime<25){
-                          difference=Math.round(realtime)+" hours ";
-
-                        }else{
-                          realtime=timeDifference/86400000;
-                          if(Math.round(realtime)==1){
-                            difference=Math.round(realtime)+" day ";
-                          }
-                          else if(realtime<29){
-                            difference=Math.round(realtime)+" days ";
-                          }
-                          else{
-                            realtime=timeDifference/604800000;
-                            if(Math.round(realtime)==1){
-                              difference=Math.round(realtime)+" week ";
-                            }
-                            else if(realtime<53){
-                              difference=Math.round(realtime)+" weeks ";
-                            }
-                            else{
-                              realtime=timeDifference/2628000000;
-                              if(Math.round(realtime)==1){
-                                difference=Math.round(realtime)+" month ";
-                              }
-                              else if(realtime<13){
-                                difference=Math.round(realtime)+" months ";
-                              }else{
-                                realtime=timeDifference/31540000000;
-                                if(Math.round(realtime)==1){
-                                  difference=Math.round(realtime)+" year ";
-                                }
-                                else{
-                                  difference=Math.round(realtime)+" years ";
-                                }
-
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                    var status="Status: "+obj.transactions[length-1].status;
-
-                    result+="<div class='info-block'><div><div><i class='ti-user small-text'></i><span class='small-text' >"+obj.transactions[length-1].firstname+" "+obj.transactions[length-1].lastname+"</span><span class='time small-text'> "+ difference +"ago</span></div><p class='block'>"+obj.transactions[length-1].amount_sent+"<span class='deposit-icon'>Sent</span></p><span class='reference-id'>"+status+"</span></div><div class='stroke'></div></div>";
-
-                    length-=1;
-               }
-
-               transactions.innerHTML=result;
-             }
-        }
-  }
-  getBalance();
-  getAccount();
-  //getTransfers();
-
 }
 
 function getTransfers(){
@@ -1527,8 +1134,7 @@ function getBalanceComplete(xhr,status){
     }
     else{
 
-      localStorage.loggedBalance=obj.balance;
-      accountbalance.innerHTML="GHS "+parseFloat(obj.balance).toFixed(2);
+      accountbalance.innerHTML="GHS "+obj.balance;
 
     }
   }
@@ -1569,7 +1175,6 @@ function updateCashoutComplete(xhr, status){
     else{
 
       window.location="client-dashboard.html";
-      transferToAccount();
 
     }
   }
@@ -1606,9 +1211,7 @@ function addAccount(){
   });
 }
 
-var mobilemoneynumber;
-var mobilemoneyname;
-var mobilemoneynetwork;
+
 
 function addAccountComplete(xhr, status){
   if(status!="success"){
@@ -1639,24 +1242,16 @@ function addAccountComplete(xhr, status){
 
 
            result+="<label  class='account checkbox-styled btn'><input onclick='selected_account(this)' type='checkbox' name='selected_account' value='bank' checked/><span class='container'><i class='ti-image small-text'></i><span class='small-text' >"+obj.bank_account[length-1].bank_name+"</span><span class='time small-text'> "+obj.bank_account[length-1].account_name+"</span><p class='block'>"+hiddenstr+" </p><span class='small-text' >"+obj.bank_account[length-1].bank_branch+" Branch"+"</span></span></label></div>";
-           localStorage.loggedAccountType = "bank";
-
          }
          if(!(obj.bank_account[length-1].mmphone=="")){
-           mobilemoneynumber=obj.bank_account[length-1].mmphone;
-           mobilemoneyname=obj.bank_account[length-1].mm_name;
-           mobilemoneynetwork=obj.bank_account[length-1].network;
-           var hiddenmmnumber="XXXX XXXX "+mobilemoneynumber.substring(8);
+           var mmnumber=obj.bank_account[length-1].mmphone;
+           var hiddenmmnumber="XXXX XXXX "+mmnumber.substring(8);
            result+="<label  class='account checkbox-styled'><input onclick='selected_account(this)'type='checkbox' name='selected_account' value='mobilemoney' /><span class='container mobilemoney'><i class='ti-image small-text'></i><span class='small-text' >"+obj.bank_account[length-1].network+"</span><span class='time small-text'>"+obj.bank_account[length-1].mm_name+" </span><p class='block'>"+hiddenmmnumber+" </p><span class='small-text' ></span></span></label></div>";
-           localStorage.loggedAccountType = "mobilemoney";
-
-
         }
       }
 
-      if(result!=""){
+
        bankaccounts.innerHTML=result;
-     }
      }
        $(".login-panel").slideToggle();
        $(".login-pop").hide();
@@ -1664,124 +1259,27 @@ function addAccountComplete(xhr, status){
        $(".fa").addClass("fa-chevron-down");
        $( ".info-modal-div" ).hide();
 
+
+
+
+
+
+
+
+
+
+
+
+
     }
   }
 }
-
 /**
  * placeholder function to point to let you know that the actual function exists under the jQuery function
  * @return {[null]} [null]
  */
 
-function sendMoneyRequest(){
 
-  var money = $('#requestmoney').val();
-  var network;
-  if(mobilemoneynetwork=="MTN"){
-    network="mtn-gh";
-  }else if(mobilemoneynetwork=="Vodafone"){
-    network="vodafone-gh";
-  }else if(mobilemoneynetwork=="Airtel_Tigo"){
-    network=" airtel-gh";
-  }else{
-
-  }
-
-  var theUrl="http://easysavegh.com/databasecommand.php?cmd=14&money="+money+"&mobilemoneynumber="+mobilemoneynumber+"&mobilemoneyname="+mobilemoneyname+"&mobilemoneynetwork="+network+"&id="+localStorage.loggedID;
-
-  $.ajax(theUrl,
-        {
-          async:true,
-          cache:false,
-          complete:sendMoneyRequestComplete
-        });
-
-}
-
-function sendMoneyRequestComplete(xhr, status){
-  if(status!="success"){
-      UIkit.modal.alert('<p class="uk-modal-body">Error</p>');
-      return;
-  }else{
-    var obj = JSON.parse(xhr.responseText);
-    console.log(obj);
-    if(obj.result==0){
-
-      UIkit.modal.alert('<p class="uk-modal-body">'+obj.message+'</p>');
-    }
-    else{
-      console.log("Retrieving balance");
-
-      //window.location="dashboard.html";
-  //alert showing transaction in process
-
-    }
-  }
-}
-
-
-function transferToAccount(){
-
-  var accounttype = localStorage.loggedAccountType;
-  console.log(accounttype);
-  var cashoutamt=localStorage.cashoutamt;
-  console.log(cashoutamt);
-  var balance=localStorage.loggedBalance;
-  console.log("balance "+balance);
-
-
-  if((balance>=cashoutamt)&& (balance>0)){
-
-    var r = confirm("You have reached your cashout amount. Do you want to transfer the balance to your account?");
-    if (r == true) {
-
-      var theUrl="http://easysavegh.com/databasecommand.php?cmd=15&type="+accounttype+"&balance="+balance+"&amount="+cashoutamt+"&userid="+localStorage.loggedID;
-
-      $.ajax(theUrl,
-            {
-              async:true,
-              cache:false,
-              complete:transferToAccountComplete
-          });
-    } else {
-        console.log('Transfer cancelled.')
-    }
-
-    // UIkit.modal.confirm('Do you want to transfer the balance to your account?').then(function() {
-    //   prompt('url',theUrl);
-    //   var theUrl="http://easysavegh.com/databasecommand.php?cmd=15&type="+accounttype+"&amount="+cashoutamt+"&userid="+localStorage.loggedID;
-    //   $.ajax(theUrl,
-    //         {
-    //           async:true,
-    //           cache:false,
-    //           complete:transferToAccountComplete
-    //       });
-    // }, function () {
-    //     console.log('Transfer cancelled.')
-    // });
-
-  }else{
-
-  }
-}
-
-function transferToAccountComplete(xhr, status){
-  if(status!="success"){
-      UIkit.modal.alert('<p class="uk-modal-body">Error</p>');
-      return;
-  }else{
-    var obj = JSON.parse(xhr.responseText);
-
-    if(obj.result==0){
-
-      UIkit.modal.alert('<p class="uk-modal-body">'+obj.message+'</p>');
-    }
-    else{
-      UIkit.modal.alert('<p class="uk-modal-body">Transfer successful.</p>');
-
-    }
-  }
-}
 
 
 

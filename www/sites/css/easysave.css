@@ -233,7 +233,7 @@ Divs/ Panels
 .header-balance{
  text-align: center;
  display: block;
- font-size: 32px;
+ font-size: 10vw;
  color: white;
 }
 
@@ -301,7 +301,7 @@ Divs/ Panels
  margin:0 auto;
 }
 .modal-header{
-
+ bo
  border-bottom-color:gainsboro;
 }
 
@@ -385,9 +385,6 @@ Divs/ Panels
  display: block;
  font-size: 0;
  margin-bottom: 4vw;
- height: 250px;
- overflow: scroll;
-
 
 
 }
@@ -427,7 +424,7 @@ Divs/ Panels
 .signup-form
 {
    display: none;
-
+   overflow:scroll;
 
 }
 
@@ -615,7 +612,6 @@ P/Text
  margin:0;
 }
 
-
 .cashout-info{
  display: block;
  font-size:4.5vw;
@@ -654,11 +650,7 @@ P/Text
  margin: 0 auto;
  text-align: center;
  color: white;
- display: inline-block;
-
 }
-
-
 
 .accountdetails{
   color:white;
@@ -786,8 +778,10 @@ p{
 .header-icons{
  position: relative;
  display: block;
+ height: 10%;
+
  text-decoration: none;
- font-size: 25px;
+ font-size: 6vw;
 }
 .header-icons a{
  color: white!important;

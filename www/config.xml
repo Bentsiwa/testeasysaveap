@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.easysave01" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps" id="io.cordova.myapp7223c1" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" defaultlocale="en-US">
   <name>EasySave</name>
   <description>An app that allows users to save money.</description>
-  <author href="http://cordova.io" email="easysavegh@gmail.com">EasySave Team </author>
+  <author href="http://cordova.io" email="dev@cordova.apache.org">Apache Cordova Team </author>
   <content src="index.html" />
   <access origin="*" />
   <vs:features />
@@ -119,7 +119,6 @@
     <splash src="res/screens/wp8/SplashScreenImage.png" width="768" height="1280"/>
   </platform>
   <preference name="android-build-tool" value="gradle"/>
-
   <plugin name="cordova-plugin-camera"  />
   <plugin name="cordova-plugin-media-capture" />
   <plugin name="cordova-plugin-compat" />

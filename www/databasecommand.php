@@ -48,12 +48,6 @@ ini_set('display_errors', 'on');
 	case 13:
 				sendsms();
 				break;
-	case 14:
-				sendMoneyRequest();
-				break;
-	case 15:
-				transferToAccount();
-				break;
 		default:
 			echo '{"result": 0, "message": "Wrong cmd"}';	//change to json message
 			break;
@@ -222,30 +216,12 @@ ini_set('display_errors', 'on');
     }
     else{
         echo '{"result":1,"message":"Transaction created Successfully"}';
-				sendPercentageToMerchant($merchantid, $merchantamount,$newmerchantbalance);
     }
 
 
 
   }
 
-function sendPercentageToMerchant($merchantid, $merchantamount,$newmerchantbalance){
-	include_once("easysave.php");
-	$obj = new easysave();
-	$bonus=(0.01*$merchantamount);
-	$newmerchantbalance=$newmerchantbalance+$bonus;
-
-
-	$merchantCredit = $obj ->easysaveAccountCredit($merchantid, $merchantamount,$newmerchantbalance);
-	if($merchantCredit==false){
-		//echo '{"result":0,"message":Transaction failed"}';
-		//tomerchat
-	}
-		else{
-
-		}
-
-}
 
 /**
  * This function to meant to credit and debit from 2 easysave_accounts.
@@ -716,6 +692,8 @@ function sendPercentageToMerchant($merchantid, $merchantamount,$newmerchantbalan
 
 
 	function sendsms(){
+
+
 		if(!isset($_REQUEST['smscode'])){
 			echo '{"result":0,"message":"No code entered."}';
 			return;
@@ -739,7 +717,7 @@ function sendPercentageToMerchant($merchantid, $merchantamount,$newmerchantbalan
 		include 'sites/Hubtel/Api.php';
 		require './vendor/autoload.php';
 
-		$auth = new BasicAuth("whmixrtt", "icnfjuku");
+		$auth = new BasicAuth("videkyxo", "widmeweg");
 
 		// instance of ApiHost
 		$apiHost = new ApiHost($auth);
@@ -767,194 +745,6 @@ function sendPercentageToMerchant($merchantid, $merchantamount,$newmerchantbalan
 		}
 
 	}
-
-	function transferToAccount(){
-		if(!isset($_REQUEST['type'])){
-			echo '{"result":0,"message":"No account type entered."}';
-			return;
-		}
-
-		if($_REQUEST['type']==""){
-			echo '{"result":0,"message":"No account type entered."}';
-			return;
-		}
-		if(!isset($_REQUEST['amount'])){
-			echo '{"result":0,"message":"No amount entered."}';
-			return;
-		}
-
-		if($_REQUEST['amount']==""){
-			echo '{"result":0,"message":"No amount entered."}';
-			return;
-		}
-		if(!isset($_REQUEST['userid'])){
-			echo '{"result":0,"message":"No user ID."}';
-			return;
-		}
-
-		if($_REQUEST['userid']==""){
-			echo '{"result":0,"message":"No user ID."}';
-			return;
-		}
-		if(!isset($_REQUEST['balance'])){
-			echo '{"result":0,"message":"No balance."}';
-			return;
-		}
-
-		if($_REQUEST['balance']==""){
-			echo '{"result":0,"message":"No balance."}';
-			return;
-		}
-
-
-
-		$type=$_REQUEST['type'];
-		$cashout=$_REQUEST['amount'];
-		$userid=$_REQUEST['userid'];
-		$balance=$_REQUEST['balance'];
-		$amount=$balance-$cashout;
-
-
-		include('transactions.php');
-		$obj=new transactions();
-
-		include('easysave.php');
-		$item=new easysave();
-
-		$row=$obj->transferToAccount($type, $userid, $cashout);
-
-		if($row==true){
-			$row=$item-> resetBalance($userid, $amount);
-			if($row==true){
-
-
-				$to      = 'easysavegh@gmail.com';
-				$subject = 'EasySave money transfer';
-				$message = 'Transfer GHS '.$cashout. ' to User with id '.$userid. ' on account '.$type;
-
-//send email to easysave account
-				// mail($to, $subject, $message);
-				echo '{"result":1,"message":"Cashout amount sent to your account."}';
-			}
-
-			else{
-				echo '{"result":0,"message":"Failed to send cashout amount to your account."}';
-			}
-
-		}
-
-		else{
-			echo '{"result":0,"message":"Failed to send cashout amount to your account."}';
-		}
-	}
-
-	function sendMoneyRequest(){
-
-				if(!isset($_REQUEST['money'])){
-					echo '{"result":0,"message":"Amount not entered."}';
-					return;
-				}
-				if($_REQUEST['money']==""){
-					echo '{"result":0,"message":"Amount not entered.}';
-					return;
-				}
-				if(!isset($_REQUEST['mobilemoneynumber'])){
-					echo '{"result":0,"message":"Mobile money number not entered."}';
-					return;
-				}
-				if($_REQUEST['mobilemoneynumber']==""){
-					echo '{"result":0,"message":"Mobile money number not entered.}';
-					return;
-				}
-				if(!isset($_REQUEST['mobilemoneyname'])){
-					echo '{"result":0,"message":"Mobile money name not entered."}';
-					return;
-				}
-				if($_REQUEST['mobilemoneyname']==""){
-					echo '{"result":0,"message":"Mobile money name not entered.}';
-					return;
-				}
-				if(!isset($_REQUEST['mobilemoneynetwork'])){
-					echo '{"result":0,"message":"Mobile money network not entered."}';
-					return;
-				}
-				if($_REQUEST['mobilemoneynetwork']==""){
-					echo '{"result":0,"message":"Mobile money network not entered.}';
-					return;
-				}
-				if(!isset($_REQUEST['id'])){
-					echo '{"result":0,"message":"User ID not found"}';
-					return;
-				}
-				if($_REQUEST['id']==""){
-					echo '{"result":0,"message":"User ID not found.}';
-					return;
-				}
-				$money=$_REQUEST['money'];
-				$number=$_REQUEST['mobilemoneynumber'];
-				$name=$_REQUEST['mobilemoneyname'];
-				$network=$_REQUEST['mobilemoneynetwork'];
-				$id=$_REQUEST['id'];
-
-
-				include 'sites/Hubtel/Api.php';
-				require './vendor/autoload.php';
-
-				$receive_momo_request = array(
-				    'CustomerName' => $name,
-					  'CustomerMsisdn'=> $number,
-					  'Channel'=> $network,
-					  'Amount'=> $money,
-					  'PrimaryCallbackUrl'=> 'http://easysavegh.com/logfile.php?id='.$id.'&money='.$money,
-					  'SecondaryCallbackUrl'=> 'http://easysavegh.com/secondarylogfile.php?id='.$id.'&money='.$money,
-					  'Description'=> 'EasySave deposit of ' . $money. ' for user with ID '.$id,
-						//'FeesOnCustomer'=>true,
-					  //'ClientReference'=> '23213',
-				);
-
-				//API Keys
-
-				$clientId = 'whmixrtt';
-				$clientSecret = 'icnfjuku';
-				$basic_auth_key =  'Basic ' . base64_encode($clientId . ':' . $clientSecret);
-				$request_url = 'https://api.hubtel.com/v1/merchantaccount/merchants/HM0708170030/receive/mobilemoney';
-				$receive_momo_request = json_encode($receive_momo_request);
-
-				$ch =  curl_init($request_url);
-						curl_setopt( $ch, CURLOPT_POST, true );
-						curl_setopt( $ch, CURLOPT_POSTFIELDS, $receive_momo_request);
-						curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-						curl_setopt( $ch, CURLOPT_HTTPHEADER, array(
-						    'Authorization: '.$basic_auth_key,
-						    'Cache-Control: no-cache',
-						    'Content-Type: application/json',
-						  ));
-
-				$result = curl_exec($ch);
-				$err = curl_error($ch);
-				curl_close($ch);
-
-				if($err){
-					//echo $err;
-					echo '{"result":0,"message":"Request failed"}';
-
-				}else{
-					echo '{"result":1,"message":"Request successful"}';
-
-
-
-					//echo $result;
-
-
-					//echo $result;
-
-
-
-
-
-				}
-			}
-
 
 
 

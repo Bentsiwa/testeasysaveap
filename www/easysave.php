@@ -92,11 +92,5 @@ include_once("adb.php");
 			return $this->query($strQuery);
 		}
 
-		function resetBalance($userid, $amount){
-			$strQuery="update easysave_account set balance=$amount where user_id='$userid'";
-
-			return $this->query($strQuery);
-		}
-
 	}
 ?>

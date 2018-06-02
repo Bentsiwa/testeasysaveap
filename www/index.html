@@ -2,7 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval';"> -->
+
+	  <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 		<title>EasySave</title>
 		<meta name="format-detection" content="telephone=no">
 		<meta name="msapplication-tap-highlight" content="no">
@@ -17,13 +20,6 @@
 				<img src="sites/images/easy.png">
 			</div>
 			<div class="login-panel">
-			<!-- 	<div id="home">
-					<div id="app-status-div">
-						<ul id="app-status-ul">
-							<li>Cordova PushNotification Plugin Demo</li>
-						</ul>
-					</div>
-				</div> -->
 				<div class="container">
 					<div class="panel-hide">
 						<i id="showsignupbtn" class="fa fa-chevron-down" aria-hidden="true"></i>
@@ -33,8 +29,8 @@
 						<input type="password" id="homePassword" placeholder="PASSWORD" required>
 					</div>
 					<div class="btn-panel">
-						<!-- <span class="merlogin" onclick="loginMerchant()">Merchant Login</span> -->
-						<span class="merlogin" onclick="loginCustomer()">Login</span>
+						<span class="merlogin" onclick="loginMerchant()">Merchant Login</span>
+						<span class="cuslogin" onclick="loginCustomer()">Customer Login</span>
 
 
 						<!--					<span class="text">Forgot Password?</span>-->
@@ -49,12 +45,12 @@
 				<div class="user-type-panel">
 					<div class="container">
 						<p class="s-text">Sign Up</p><br>
-						<span class="subtext"> Click to continue to sign up as a customer.</span>
+						<span class="subtext"> Do you want to sign up as a customer or an agent? Please Select below</span>
 						<span class="user-type"> </span>
-						<!-- <div class="img-holder">
+						<div class="img-holder">
 							<img class="type-merchant" src="sites/images/001-help-operator.png">
 							<p class="type-merchant">Merchant</p>
-						</div> -->
+						</div>
 						<div class="img-holder">
 							<img class="type-customer" src="sites/images/002-clerk-with-tie.png">
 							<p class="type-customer">Customer</p>
@@ -64,11 +60,11 @@
 				<div class="container">
 
 					<div class="signup-form uk-grid ">
-						<!-- <p class="s-text">Sign Up</p> -->
-						<!-- <h3><span class="subtext"> Sign Up</span></h3> -->
+
 						<!-- <span class="confirmationbtn uk-text-danger uk-text-capitalize fa fa-exclamation">The specified passwords do not match</span> -->
 						<div class="input-panel">
 							<input class="input uk-width-1-1" id='signupemail' type="email" placeholder="EMAIL" required>
+
 							<input class=" input  uk-width-1-2 " id='signupfirstname' type="text" placeholder="FIRSTNAME" required>
 							<input  class="input  uk-width-1-2 " id='signuplastname' type="text" placeholder="LASTNAME" >
 							<input class="input uk-width-1-1" id='signupdob' type="date" placeholder="DATE OF BIRTH"  >
@@ -153,9 +149,8 @@
 		<script type="text/javascript" src="sites/libraries/js-toast-master/toast.js"></script>
 		<script type="text/javascript" src="sites/libraries/jquery.js"></script>
 		<script type="text/javascript" src="css.js"></script>
-		<script type="text/javascript" src="cordova.js"></script>
+		   <script type="text/javascript" src="cordova.js"></script>
 		<script src="sites/uikit/js/uikit.min.js"></script>
-		<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
 
 	</body>
 	</html>

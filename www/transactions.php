@@ -40,25 +40,8 @@ include_once("adb.php");
 			return $this->query($strQuery);
 		}
 
-
-	function getSentById($id){
-			$strQuery="select * from transactions inner join user on user_id = merchant_id";
-
-			return $this->query($strQuery);
-	}
-
 		function getTransfersById($id){
 			$strQuery="select * from bank_transfer inner join user on bank_transfer.user_id = user.user_id where bank_transfer.user_id='$id'";
-
-			return $this->query($strQuery);
-		}
-
-		function transferToAccount($type, $userid, $amount){
-			$strQuery="insert into bank_transfer set
-							user_id='$userid',
-							medium='$type',
-							amount='$amount',
-							status='success'";
 
 			return $this->query($strQuery);
 		}

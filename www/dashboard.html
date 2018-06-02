@@ -13,21 +13,18 @@
 		<link rel="stylesheet" href="sites/libraries/font_awesome/css/font-awesome.min.css">
 		<link  href="sites/css/themify-icons.css" rel="stylesheet">
 	</head>
-	<body onload="getTransactionsWithoutCache()">
+	<body onload="getTransactions()">
 		<div class="dashboard">
 			<div class= "header">
 				<img class="dash-image"src="sites/images/dash.png" >
 				<div class="header-icons">
 					<a href="#"><i class="ti-settings"></i></a>
-					<a href="#"><i class="ti-plus"></i></a>
-
-					<a href="#"><i class="ti-reload"></i></a>
+					<a href="#"><i class="ti-share"></i></a>
 					<a class="alt" href="#"><i class="ti-power-off"></i></a>
 				</div><br><br>
 				<div class="header-balance">
-					<span id="accountbalance" class="amount-balance">GHS 0.00</span>
+					<center><span  id="accountbalance" class="amount-balance">GHS 0.00</span></center>
 				</div>
-		
 				<span class="info">Available Balance</span>
 				<div class="icon-div">
 					<span class="info-down"><i class="ti-arrow-down"></i></span>
@@ -64,10 +61,19 @@
 			</div>
 			<div class="cashout-text-div">
 				<span class="cashout-info">Select the account to cash out to</span>
-				<!-- <span class="cashout-subinfo">You can add multiple account from the add button above</span> -->
+				<span class="cashout-subinfo">You can add multiple account from the add button above</span>
 			</div>
-			<div id='bankaccounts'>
+			<div class="account">
+				<i class="ti-image small-text"></i><span class="small-text" >MTN Mobile Money</span>
+				<span class="time small-text">  Abeku Santana</span>
+				<p class="block"> 0244843215 </p>
+			</div>
 
+			<div class="account">
+				<i class="ti-image small-text"></i><span class="small-text" >Vodafone Cash</span>
+				<span class="time small-text">  Kwame Danso</span>
+				<p class="block"> 0208495532 </p>
+			</div>
 		</div>
 		<div class="settings">
 			<div class="header-icons">
@@ -123,7 +129,6 @@
 	</div>
 
 
-
 	<!--		scripts-->
 
 	<script type="text/javascript" src="sites/libraries/js-toast-master/toast.js"></script>
@@ -133,7 +138,6 @@
 	<script type="text/javascript" src="qrcode.js"></script>
 	<script src="sites/uikit/js/uikit.min.js"></script>
 	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript" charset="utf-8" src="PushNotification.js"></script>
 
 	</body>
 </html>
