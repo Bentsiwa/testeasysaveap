@@ -1,30 +1,26 @@
-localStorage.logoutCount= 0;
-localStorage.currentPage=".dashboard";
+sessionStorage.logoutCount= 0;
+sessionStorage.currentPage=".dashboard";
 //CSS Animations
 //Index Page
-
-
 $(".ti-power-off").click(function(){
     var options = {
         settings: {
             duration: 1000
         }
     };
-    if(localStorage.logoutCount== 1){
+    if(sessionStorage.logoutCount== 1){
         iqwerty.toast.Toast('Loggin Out...');
+        sessionStorage.clear();
 
-        localStorage.clear();
-
-
-          window.location="index.html";
+            window.location="index.html";
 
     }
-    if(localStorage.logoutCount== 0){
-        localStorage.logoutCount= 1;
+    if(sessionStorage.logoutCount== 0){
+        sessionStorage.logoutCount= 1;
         iqwerty.toast.Toast('Press Again to Logout',options);
     }
     setTimeout(function() {
-        localStorage.logoutCount= 0;
+        sessionStorage.logoutCount= 0;
     }, 10000);
 });
 
@@ -223,7 +219,7 @@ $(".ti-share").click(function(){
     $(".info-modal-info").html("AUTOMATIC CASHOUT");
     $(".info-modal-content").html('<span class="modal-info">We can automate cash outs to your primary account.'
                                   +' Please let us know at what available balance this should occur. </span>'
-                                  +'<input type="number" id="cashout" placeholder="GHS '+localStorage.cashoutamt+'">'
+                                  +'<input type="number" id="cashout" placeholder="GHS '+sessionStorage.cashoutamt+'">'
                                   +'<div onClick="updateCashout()" class="cashout-btn btn" >Cashout</div>');
     $(".info-cover").fadeIn();
     $(".info-modal-div").fadeIn();
@@ -246,14 +242,14 @@ $(".ti-home").click(function(){
     $(".ti-wallet").removeClass("active");
     $(".ti-export").removeClass("active");
     $(".ti-home").addClass("active");
-    localStorage.currentPage=".dashboard";
+    sessionStorage.currentPage=".dashboard";
 });
 
 
 $(".ti-settings").click(function(){
     $( ".dashboard" ).hide();
     if( $( ".settings" ).css("display")=="none"){
-        $(localStorage.currentPage).hide();
+        $(sessionStorage.currentPage).hide();
         $( ".settings" ).fadeIn(600);
     }
 });
@@ -266,7 +262,7 @@ $(".ti-wallet").click(function(){
     $(".ti-home").removeClass("active");
     $(".ti-export").removeClass("active");
     $(".ti-wallet").addClass("active");
-    localStorage.currentPage=".cashout";
+    sessionStorage.currentPage=".cashout";
 });
 
 $(".ti-export").click(function(){
@@ -279,7 +275,7 @@ $(".ti-export").click(function(){
     $(".ti-wallet").removeClass("active");
     $(".ti-home").removeClass("active");
     $(".ti-export").addClass("active");
-    localStorage.currentPage=".dashboard";
+    sessionStorage.currentPage=".dashboard";
 });
 
 $(".ti-close").click(function(){
@@ -295,8 +291,8 @@ $("#showsignupbtn").click(function(){
 
 $(".ti-arrow-left").click(function(){
     $( ".settings" ).hide();
-    if( $( localStorage.currentPage).css("display")=="none"){
-        $( localStorage.currentPage ).fadeIn(600);
+    if( $( sessionStorage.currentPage).css("display")=="none"){
+        $( sessionStorage.currentPage ).fadeIn(600);
     }
 });
 
@@ -310,26 +306,13 @@ $(".ti-arrow-left").click(function(){
 //   console.log(selectedcheckbox);
 // });
 
-function checkstatus(){
-  if(localStorage.loggedID ==null){
 
-  }else{
-
-    if(localStorage.type=="customer"){
-      window.location="client-dashboard.html";
-    }else{
-      window.location="dashboard.html";
-    }
-
-  }
-
-}
 function selected_account(checkedbox){
 
   $('input[type="checkbox"]').prop("checked", false);
   $(checkedbox).prop("checked", true);
   var selectedcheckbox=checkedbox.value;
-  localStorage.loggedAccountType = selectedcheckbox;
+  sessionStorage.loggedAccountType = selectedcheckbox;
 
 }
 
@@ -373,7 +356,6 @@ function selected_account(checkedbox){
 
 		document.getElementById("barcodeScanner").onclick = function(){
 
-
 			cordova.plugins.barcodeScanner.scan(
 		 function (result) {
 
@@ -381,14 +363,12 @@ function selected_account(checkedbox){
        var fundsFrom = result.text.split(":");
 
 
-
        //The php script here adds the transaction to records and executes a function explode which does the deductions to the easysave_accounts
-       var theUrl="http://easysavegh.com/databasecommand.php?cmd=4&merchantid="+fundsFrom[0]+"&merchantname="+fundsFrom[1]+"&merchantamount="+fundsFrom[2]+"&userid="+localStorage.loggedID+"&username="+localStorage.loggedName;
+       var theUrl="http://easysavegh.com/databasecommand.php?cmd=4&merchantid="+fundsFrom[0]+"&merchantname="+fundsFrom[1]+"&merchantamount="+fundsFrom[2]+"&userid="+sessionStorage.loggedID+"&username="+sessionStorage.loggedName;
 
        $.ajax(theUrl,
              {
                async:true,
-               cache:false,
                complete:barcodeComplete
              });
 
@@ -397,8 +377,8 @@ function selected_account(checkedbox){
    						// 	 'Result: ' + result.text + '\n' +
    						// 	 'Format: ' + result.format + '\n' +
    						// 	 'Cancelled: ' + result.cancelled);
-              getTransactions();
 
+              getBalance();
 		 },
 		 function (error) {
 				  alert('Scanning failed.');
@@ -466,7 +446,6 @@ function sendsms(thecode, phonenumber){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:sendsmsComplete
         });
 
@@ -509,7 +488,6 @@ function loginMerchant(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:loginMerchantComplete
         });
 }
@@ -530,11 +508,11 @@ function loginMerchantComplete(xhr, status){
 
     else{
 
-      localStorage.loggedID = obj.user_id;
-      localStorage.loggedName = obj.firstname+" "+obj.lastname;
-        localStorage.type="merchant";
-      console.log(localStorage.loggedID);
-      localStorage.loggedAccountType = "bank";
+      sessionStorage.loggedID = obj.user_id;
+      sessionStorage.loggedName = obj.firstname+" "+obj.lastname;
+
+
+      sessionStorage.loggedAccountType = "bank";
       window.location="dashboard.html";
 
     }
@@ -550,7 +528,6 @@ function getUserWithPhoneNumber(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:getUserWithPhoneNumberComplete
         });
 }
@@ -613,7 +590,6 @@ function loginCustomer(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:loginCustomerComplete
         });
 }
@@ -633,14 +609,12 @@ function loginCustomerComplete(xhr, status){
     }
 
     else{
-      localStorage.loggedID = obj.user_id;
-      localStorage.loggedName = obj.firstname+" "+obj.lastname;
-      localStorage.cashoutamt=obj.cashout_amount;
-      localStorage.type="customer";
+      sessionStorage.loggedID = obj.user_id;
+      sessionStorage.loggedName = obj.firstname+" "+obj.lastname;
+      sessionStorage.cashoutamt=obj.cashout_amount;
 
 
-      localStorage.loggedAccountType = "bank";
-      console.log(localStorage.loggedID);
+      sessionStorage.loggedAccountType = "bank";
       window.location="client-dashboard.html";
 
     }
@@ -723,7 +697,7 @@ function validateForm(){
 }
 function signUp(){
 
-
+    iqwerty.toast.Toast('Sighin In...');
      if (($('#accountnumber').val()==null && $('#mmnumber').val()==null)|| ($('#accountnumber').val()=="" && $('#mmnumber').val()=="")||($('#accountnumber').val()==null && $('#mmnumber').val()=="")||$('#accountnumber').val()=="" && $('#mmnumber').val()==null){
 
               $(".info-modal-div").hide();
@@ -765,7 +739,6 @@ function signUp(){
       $.ajax(theUrl,
             {
               async:true,
-              cache:false,
               complete:signUpComplete
       });
 
@@ -797,13 +770,11 @@ function signUpComplete(xhr, status){
 
       $(".info-modal-div").hide();
 
-      $(".login-panel").show();
-    //  $(".login-panel").slideToggle();
-
+      $(".login-panel").slideToggle();
+      $(".login-pop").hide();
       $(".fa").removeClass("fa-chevron-up");
       $(".fa").addClass("fa-chevron-down");
-      //$(".uk-form").hide();
-
+      $(".uk-form").hide();
 
 
     }
@@ -811,16 +782,14 @@ function signUpComplete(xhr, status){
 }
 
 function getTransactions(){
-
     $("#transfers").hide();
-    var id=localStorage.loggedID;
+    var id=sessionStorage.loggedID;
 
     var theUrl="http://easysavegh.com/databasecommand.php?cmd=6&id="+id;
 
     $.ajax(theUrl,
           {
             async:true,
-            cache:false,
             complete:getTransactionsComplete
     });
 
@@ -828,7 +797,7 @@ function getTransactions(){
 
 function getTransactionsComplete(xhr,status){
   if(status!="success"){
-      alert('<p class="uk-modal-body">Error while fetching transactions.</p>');
+      UIkit.modal.alert('<p class="uk-modal-body">Error while fetching transactions.</p>');
       return;
   }else{
     var obj=JSON.parse(xhr.responseText);
@@ -945,15 +914,13 @@ function getTransactionsComplete(xhr,status){
 
 function getTransfers(){
 
-
-  var id=localStorage.loggedID;
+  var id=sessionStorage.loggedID;
 
   var theUrl="http://easysavegh.com/databasecommand.php?cmd=12&id="+id;
 
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:getTransfersComplete
   });
 
@@ -964,7 +931,7 @@ function getTransfers(){
 
 function getTransfersComplete(xhr,status){
   if(status!="success"){
-      alert('<p class="uk-modal-body">Error while fetching transfers.</p>');
+      UIkit.modal.alert('<p class="uk-modal-body">Error while fetching transfers.</p>');
       return;
   }else{
     var obj=JSON.parse(xhr.responseText);
@@ -1100,8 +1067,7 @@ function getTransfersComplete(xhr,status){
 
 function getBalance(){
 
-
-  var id=localStorage.loggedID;
+  var id=sessionStorage.loggedID;
 
 
   var theUrl="http://easysavegh.com/databasecommand.php?cmd=7&id="+id;
@@ -1109,7 +1075,6 @@ function getBalance(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:getBalanceComplete
   });
 
@@ -1120,7 +1085,7 @@ function getBalance(){
 
 function getBalanceComplete(xhr,status){
   if(status!="success"){
-      alert('<p class="uk-modal-body">Error while retrieving balance.</p>');
+      UIkit.modal.alert('<p class="uk-modal-body">Error while retrieving balance.</p>');
       return;
   }else{
     var obj=JSON.parse(xhr.responseText);
@@ -1143,9 +1108,9 @@ function getBalanceComplete(xhr,status){
 
 function updateCashout(){
 
-    var id=localStorage.loggedID;
+    var id=sessionStorage.loggedID;
     var cashoutamt = $('#cashout').val();
-    localStorage.cashoutamt=cashoutamt;
+    sessionStorage.cashoutamt=cashoutamt;
 
     console.log(cashoutamt);
 
@@ -1154,7 +1119,6 @@ function updateCashout(){
     $.ajax(theUrl,
           {
             async:true,
-            cache:false,
             complete:updateCashoutComplete
     });
 }
@@ -1181,7 +1145,7 @@ function updateCashoutComplete(xhr, status){
 }
 function getAccount(){
 
-  var id=localStorage.loggedID;
+  var id=sessionStorage.loggedID;
 
   var theUrl="http://easysavegh.com/databasecommand.php?cmd=10&id="+id;
 
@@ -1189,13 +1153,12 @@ function getAccount(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:addAccountComplete
   });
 }
 
 function addAccount(){
-  var id=localStorage.loggedID;
+  var id=sessionStorage.loggedID;
   var accountname=$('#accountname').val();
   var accountnumber=$('#accountnumber').val();
   var accountbranch=$('#accountbranch').val();
@@ -1206,7 +1169,6 @@ function addAccount(){
   $.ajax(theUrl,
         {
           async:true,
-          cache:false,
           complete:addAccountComplete
   });
 }

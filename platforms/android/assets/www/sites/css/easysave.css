@@ -347,20 +347,17 @@ Divs/ Panels
 @media (min-width: 768px) {
  .container {
   width: 750px;
-
  }
 
 }
 @media (min-width: 992px) {
  .container {
   width: 970px;
-
  }
 }
 @media (min-width: 1200px) {
  .container {
   width: 1170px;
-
  }
 }
 .signup-panel{
@@ -564,11 +561,6 @@ select{
  color:#ffbf80;
  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
 }
-#signupfirstname, #signuplastname{
-   width:50%;
-
-
-}
 
 .verification_number
 {
@@ -581,7 +573,7 @@ select{
 
 
 }
-#signupgender,#idtype,#signupdob, #network{
+#signupgender,#idtype,#signupdob{
   background-color: white;
 }
 /*

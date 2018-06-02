@@ -18,14 +18,14 @@
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <splash density="land-hdpi" src="res/screen/android/icon.png" />
-        <splash density="land-ldpi" src="res/screen/android/icon.png" />
-        <splash density="land-mdpi" src="res/screen/android/icon.png" />
+        <splash density="land-hdpi" src="res/screen/android/easy.png" />
+        <splash density="land-ldpi" src="res/screen/android/easy.png" />
+        <splash density="land-mdpi" src="res/screen/android/easy.png" />
         <splash density="land-xhdpi" src="res/screen/android/easy.png" />
-        <splash density="port-hdpi" src="res/screen/android/icon.png" />
-        <splash density="port-ldpi" src="res/screen/android/icon.png" />
-        <splash density="port-mdpi" src="res/screen/android/icon.png" />
-        <splash density="port-xhdpi" src="res/screen/android/icon.png" />
+        <splash density="port-hdpi" src="res/screen/android/easy.png" />
+        <splash density="port-ldpi" src="res/screen/android/easy.png" />
+        <splash density="port-mdpi" src="res/screen/android/easy.png" />
+        <splash density="port-xhdpi" src="res/screen/android/easy.png" />
     </platform>
     <platform name="android">
         <icon density="mdpi" src="res/icon/android/icon.png" />
@@ -37,7 +37,6 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <engine name="android" spec="^6.2.3" />
-   <!--  <plugin name="cordova-plugin-barcodescanner" spec="^0.7.4" /> -->
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
